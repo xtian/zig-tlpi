@@ -35,7 +35,7 @@ pub fn main() !u8 {
                     for (buffer) |byte| {
                         switch (arg[0]) {
                             'r' => try stdout.print("{c}", .{byte}),
-                            'R' => try stdout.print("{x:0>2}", .{byte}),
+                            'R' => try stdout.print("{x:0>2} ", .{byte}),
                             else => unreachable,
                         }
                     }
