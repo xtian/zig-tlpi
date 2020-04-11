@@ -9,7 +9,6 @@ pub fn main() !u8 {
     defer arena.deinit();
 
     const args = try std.process.argsAlloc(&arena.allocator);
-    defer std.process.argsFree(&arena.allocator, args);
 
     if (args.len < 3 or std.mem.eql(u8, args[1], "--help")) {
         warn("Usage: file [r<length>|R<length>|w<string>|s<offset>]...\n", .{});
