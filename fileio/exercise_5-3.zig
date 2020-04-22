@@ -46,7 +46,7 @@ pub fn main() !u8 {
             try os.lseek_END(fd, 0);
         }
 
-        _ = try os.write(fd, BUFFER[0..]);
+        _ = try os.write(fd, &BUFFER);
     }
 
     return 0;
