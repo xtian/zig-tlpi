@@ -1,6 +1,8 @@
 // Exercise 5-2
 // Write a program that opens an existing file for writing with the `O_APPEND` flag, and then seeks
 // to the beginning of the file before writing some data. Where does data appear in the file? Why?
+//
+// A: Appended to the end, because `write()` ignores the file offset when `O_APPEND` is set.
 
 const std = @import("std");
 const os = std.os;

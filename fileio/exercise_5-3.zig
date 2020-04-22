@@ -6,13 +6,21 @@
 // perform an `lseek(fd, 0, SEEK_END)` call before each `write()`. Run two instances of this
 // program at the same time without the `x` argument to write 1 million bytes to the same file:
 //
-//    $ ./exercise_5-3 f1 1000000 & ./exercise_5-3 f1 1000000
+//     $ ./exercise_5-3 f1 1000000 & ./exercise_5-3 f1 1000000
 //
 // Repeat the same steps, writing to a different file, but this time specifying the `x` argument:
 //
-//    $ ./exercise_5-3 f2 1000000 x & ./exercise_5-3 f2 1000000 x
+//     $ ./exercise_5-3 f2 1000000 x & ./exercise_5-3 f2 1000000 x
 //
 // List the sizes of the files using `ls -l` and explain the difference.
+//
+// A:
+//
+//     2,000,000 f1
+//     1,003,008 f2
+//
+// In the "x" version, the program is occasionally interrupted between `lseek()` and `write()`, so
+// both processes write to the same offset. When `O_APPEND` is set, writes are appended atomically.
 
 const std = @import("std");
 const os = std.os;
