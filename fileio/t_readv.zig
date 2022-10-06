@@ -1,15 +1,15 @@
 const std = @import("std");
 const os = std.os;
-const warn = std.debug.warn;
+const print = std.debug.print;
 
 pub fn main() !u8 {
     if (os.argv.len != 2 or std.cstr.cmp(os.argv[1], "--help") == 0) {
-        warn("Usage: file\n", .{});
+        print("Usage: file\n", .{});
         return 1;
     }
 
-    const stdout = std.io.getStdOut().outStream();
-    const fd = try os.openZ(os.argv[1], os.O_RDONLY, 0);
+    const stdout = std.io.getStdOut().writer();
+    const fd = try os.openZ(os.argv[1], os.O.RDONLY, 0);
 
     var my_struct: os.Stat = undefined;
     var x: usize = undefined;
